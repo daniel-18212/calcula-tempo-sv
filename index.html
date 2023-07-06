@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Calculadora</title>
+    <style>
+        
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 20px;
+            text-align: center;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        input[type="date"] {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        button {
+            margin-top: 10px;
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #4CAF50;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        #result {
+            margin-top: 20px;
+            font-weight: bold;
+        }
+
+        footer {
+            margin-top: 20px;
+            font-size: 14px;
+            color: #888;
+            text-align: center;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Cálculo de Tempo de Serviço</h2>
+        <form>
+            <label for="start-date">Data de Início:</label>
+            <input type="date" id="start-date">
+            <label for="end-date">Data de Término:</label>
+            <input type="date" id="end-date">
+            <button type="button" onclick="calculateDuration()">Calcular</button>
+        </form>
+        <div id="result"></div>
+    </div>
+
+    <footer>
+        Desenvolvido pelo 3° Sgt Daniel Rodrigues
+    </footer>
+
+    <script>
+        function calculateDuration() {
+            var startDate = new Date(document.getElementById("start-date").value);
+            var endDate = new Date(document.getElementById("end-date").value);
+
+            var timeDiff = endDate.getTime() - startDate.getTime();
+
+            var years = Math.floor(timeDiff / (1000 * 60 * 60 * 24 * 365));
+            timeDiff -= years * (1000 * 60 * 60 * 24 * 365);
+
+            var months = Math.floor(timeDiff / (1000 * 60 * 60 * 24 * 30));
+            timeDiff -= months * (1000 * 60 * 60 * 24 * 30);
+
+            var days = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
+
+            var result = document.getElementById("result");
+            result.innerHTML = "Duração: " + years + " anos, " + months + " meses e " + days + " dias. (" + (years * 365 + months * 30 + days) + " dias no total)";
+        }
+    </script>
+</body>
+</html>
